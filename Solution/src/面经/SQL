@@ -1,0 +1,50 @@
+Second Highest
+
+select Max(Salary)
+from Employee
+where Salary < (select Max(Salary) from Employee)
+
+Employees Earning More Than Their Managers
+select e1.Name
+from Employee e1
+join Employee e2
+on e1.managerId=e2.Id and e1.Salary>e2.Salary
+
+Duplicate Emails
+select Email
+from Person
+group by Email
+having count(*) > 1
+
+Combine Two Tables
+select p.FirstName, p.LastName, a.City, a.State
+from Person p
+left join Address a
+on p.PersonId=a.PersonId
+
+Customers Who Never Order
+select c.Name
+from Customers c
+left join Orders o
+on c.Id=o.CustomerId
+where o.Id is NULL
+
+Consecutive Numbers
+select distinct l1.Num
+from Logs l1, Logs l2, Logs l3
+where l1.Id=l2.Id-1 and l2.Id=l3.Id-1 and l1.Num=l2.Num and l2.Num=l3.Num
+
+Rising Temperature
+Given a Weather table, write a SQL query to find all dates' Ids with
+higher temperature compared to its previous (yesterday's) dates.
+select w1.Id
+from Weather w1, Weather w2
+where w1.Temperature>w2.Temperature and TO_DAYS(w1.Date)=TO_DAYS(w2.Date)+1
+
+create table EMPLOYEE (
+   id INT NOT NULL auto_increment,
+   first_name VARCHAR(20) default NULL,
+   last_name  VARCHAR(20) default NULL,
+   salary     INT  default NULL,
+   PRIMARY KEY (id)
+);

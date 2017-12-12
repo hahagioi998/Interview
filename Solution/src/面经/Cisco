@@ -1,0 +1,17 @@
+1两个组，第一个组周五电面，暂时没下文了。
+1. return the kth last nodes from a linked list
+2. given an array, return k most occurring numbers
+what if data is huge that have to distribute to multiple machines(use
+redundant for backup)
+也是用hash table，区别在于，假设有n台机器，每台机器一个hash table，如果
+number%n = m，就把这个number
+放到第m台机器上的hashtable里去计算。最后把n台机器放一起算个top k
+3. how to uniquely serialized and reconstruct a binary tree
+第二个组没有电面，manager直接叫过去onsite(周二)，周三去跟director谈了谈，今
+天offer到手，除了跟manager闲聊一共四轮。因为cisco都是老系统，所以全部用的c
+1. reverse a string using recursion加上一些闲聊
+2. 一共问了5-6个题，都很简单。有些记不起来了。。。有不用/实现除法，倒序输出
+一个linked list之类的。比较雷的是不要求最优解法，只要写出来对就可以了。。。
+
+请描述一下从你打开电脑到网页显示在你的屏幕上，在网络方面都发生了什么？
+

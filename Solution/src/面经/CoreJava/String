@@ -1,0 +1,31 @@
+1)Why is string immutable?
+1. The string is Immutable in Java because String objects are cached in String pool.
+Since cached String literals are shared between multiple clients there is always a risk, where one client's action would affect all another client.
+For example, if one client changes the value of String "Test" to "TEST", all other clients will also see that value as explained in the first example.
+Since caching of String objects was important from performance reason this risk was avoided by making String class Immutable.
+At the same time, String was made final so that no one can compromise invariant of String class e.g. Immutability, Caching, hashcode calculation etc by extending and overriding behaviors.
+
+2. Another reason of why String class is immutable could die due to HashMap.
+Since Strings are very popular as HashMap key, it's important for them to be immutable so that they can retrieve the value object which was stored in HashMap.
+
+3. Since String is immutable it can safely share between many threads which is very important for multithreaded programming and to avoid any synchronization issues in Java, Immutability also makes String instance thread-safe in Java, means you don't need to synchronize String operation externally.
+4.String has been widely used as parameter for many Java classes e.g. for opening network connection, you can pass hostname and port number as string, you can pass database URL as a string for opening database connection, you can open any file in Java by passing the name of the file as argument to File I/O classes.
+
+2) Why is String final in Java?
+The string is final by design in Java, some of the points which make sense why String is final is Security, optimization and to maintain a pool of String in Java. for details on each of this point see Why String is final in Java.
+
+3)Difference between string object and string literal [duplicate]
+new String("text"); explicitly creates a new and referentially distinct instance of a String object;
+String s = "text"; may reuse an instance from the string constant pool if one is available.
+You very rarely would ever want to use the new String(anotherString) constructor. From the API:
+String(String original) : Initializes a newly created String object so that it represents the same sequence of characters as the argument; in other words, the newly created string is a copy of the argument string. Unless an explicit copy of original is needed, use of this constructor is unnecessary since strings are immutable.
+String pool check is only performed when you create String as literal, if you create String using new() operator, a new String object will be created even if String with the same content is available in the pool.
+
+4) What does intern() method do in Java?
+As discussed in previous String interview question, String object created by new() operator is by default not added in String pool as opposed to String literal. The intern method allows putting a String object into a pool.
+
+5) Why char array is better than String for storing password?
+One of the reasons which people give Why you should store a password in char array over String is related to immutability since it's not possible to erase contents of String but you can erase contents of a char array.
+
+6) How do you compare two String in Java?
+DON'T use ==. There are multiple ways to compare two String like equals() method, equalsIgnoreCase() etc, You can also see 4 ways to compare String in Java for more examples.

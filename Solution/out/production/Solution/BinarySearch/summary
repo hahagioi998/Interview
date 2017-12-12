@@ -1,0 +1,3 @@
+必须是sorted array才可以
+binary search在处理有重复的array时不太好用，基本上很有可能变成O(n)
+要注意到target越界的情况，比所有大或者比所有小，这个要先处理

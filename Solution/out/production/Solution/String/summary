@@ -1,0 +1,83 @@
+string API
+s.reverse();
+
+stringbuild:
+append(CharSequence s, int start, int end)
+append(char[] str)
+append(char[] str, int offset, int len)
+
+string.indexOf(searchvalue, start)
+returns the position of the first occurrence of a specified value in a string.
+This method returns -1 if the value to search for never occurs.
+
+把char变成string的神奇方法
+!str.contains(array[left]+"")
+s.contains(string); public boolean contains(CharSequence sequence)
+
+s.equals()
+
+String[]	split(String regex)
+Splits this string around matches of the given regular expression.
+String[]	split(String regex, int limit)
+Splits this string around matches of the given regular expression.
+String.valueOf(chars)
+
+new String(array, 0 , slow + 1);  slow + 1 is length
+
+public String substring(int startIndex)
+and
+public String substring(int startIndex, int endIndex)  endIndex not included
+
+1. removal
+用hashtable去考虑string/array，还有binary search(logn)
+slow and fast pointers, sliding window
+找排列组合的话用DFS
+
+2. De-duplication
+
+3. Substring
+
+4. String reversal
+shift string to left
+step 1: 两个区间各自reverse
+step2： reverse whole string
+
+5. Char Replacement
+考虑size relationship
+s1.length() > s2.length just replace
+s1.length() < s2.length need to know how many extra space, count occurance of s1
+s: all letters to left are processed data
+f. current index to move
+
+1. String shuffling
+ABCD1234->A1B2C3D4
+
+A1B2C3D4->ABCD1234(merge sort的follow up)
+
+
+
+2.String permutaion(DFS)
+
+3. Sting En/Decoding
+ssimilar to char replacement(becareful about two cases: become longer or shorter)
+step1: deal with the cases the adjacent occurance of letters >=2, will make original string shorter
+step2: deal with the cases the adjacent occurance of letters == 1
+step3: finalize the string by calling resize
+
+4.Sliding window (slow + fast indices)
+two pointers:
+    slow: begin index of a solution
+    fast: current index
+in the meantime, we use a hashtable
+    <key, value> record frequency of all letters bettween s and f
+when to move fast pointer?
+    -when there is no value > 1 in the hashtable
+when to move slow pointer and when to stop slow?
+    -when there is a value > 1, say letter D, and for each letter that slow pointer
+    is pointing to, we decrement its value before doing slow++
+    -when we have <D, value = 1> we stop
+when to update the final solution?
+run an example
+or we can say step 1 initialize, 2, 3
+
+

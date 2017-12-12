@@ -1,0 +1,23 @@
+What problem Builder pattern solves in Java
+when an Object can be created with lot of parameters, some of them may be mandatory and others may be optional.
+Problems:
+1) too many constructors to maintain.
+2) error prone because many fields has same type e.g. sugar and and butter are in cups so instead of 2 cup sugar if you pass 2 cup butter, your compiler will not complain but will get a buttery cake with almost no sugar with high cost of wasting butter.
+
+
+
+
+Builder design pattern in Java – Pros and Cons
+
+Live everything Builder pattern also has some disadvantages, but if you look at below, advantages clearly outnumber disadvantages of Builder design pattern. Any way here are few advantages and disadvantage of Builder design pattern for creating objects in Java.
+
+Advantages:
+1) more maintainable if number of fields required to create object is more than 4 or 5.
+2) less error-prone as user will know what they are passing because of explicit method call.
+3) more robust as only fully constructed object will be available to client.
+
+Disadvantages:
+1) verbose and code duplication as Builder needs to copy all fields from Original or Item class.
+
+When to use Builder Design pattern in Java
+Builder Design pattern is a creational pattern and should be used when number of parameter required in constructor is more than manageable usually 4 or at most 5. Don't confuse with Builder and Factory pattern there is an obvious difference between Builder and Factory pattern, as Factory can be used to create different implementation of same interface but Builder is tied up with its Container class and only returns object of Outer class.

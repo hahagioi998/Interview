@@ -1,0 +1,189 @@
+Map
+In Java 8, stream().map() lets you convert an object to something else. Review the following examples :
+1. A List of Strings to Uppercase
+1.1 Simple Java example to convert a list of Strings to upper case.
+ List<String> alpha = Arrays.asList("a", "b", "c", "d");
+ List<String> collect = alpha.stream().map(String::toUpperCase).collect(Collectors.toList());
+List<Integer> num = Arrays.asList(1,2,3,4,5);
+List<Integer> collect1 = num.stream().map(n -> n * 2).collect(Collectors.toList());
+2. List of objects -> List of String
+List<String> collect = staff.stream().map(x -> x.getName()).collect(Collectors.toList());
+3. List of objects -> List of other objects
+		// convert inside the map() method directly.
+        List<StaffPublic> result = staff.stream().map(temp -> {
+            StaffPublic obj = new StaffPublic();
+            obj.setName(temp.getName());
+            obj.setAge(temp.getAge());
+            if ("mkyong".equals(temp.getName())) {
+                obj.setExtra("this field is for mkyong only!");
+            }
+            return obj;
+        }).collect(Collectors.toList());
+
+Filters
+1. Streams filter() and collect()
+List<String> lines = Arrays.asList("spring", "node", "mkyong");
+
+        List<String> result = lines.stream()                // convert list to stream
+                .filter(line -> !"mkyong".equals(line))     // we dont like mkyong
+                .collect(Collectors.toList());              // collect the output and convert streams to a List
+
+        result.forEach(System.out::println);                //output : spring, node
+
+2. Streams filter(), findAny() and orElse()
+        List<Person> persons = Arrays.asList(
+                new Person("mkyong", 30),
+                new Person("jack", 20),
+                new Person("lawrence", 40)
+        );
+
+        Person result1 = persons.stream()                        // Convert to steam
+                .filter(x -> "jack".equals(x.getName()))        // we want "jack" only
+                .findAny()                                      // If 'findAny' then return found
+                .orElse(null);                                  // If not found, return null
+
+
+
+List<Integer> transactionsIds =
+    transactions.stream()
+                .filter(t -> t.getType() == Transaction.GROCERY)
+                .sorted(comparing(Transaction::getValue).reversed())
+                .map(Transaction::getId)
+                .collect(toList());
+
+Filter a Map examples
+An example to show you how to filter a Map with Java 8 stream API.
+
+Before Java 8 :
+
+String result = "";
+for (Map.Entry<Integer, String> entry : A_MAP_EXAMPLE.entrySet()) {
+	if("something".equals(entry.getValue())){
+		result = entry.getValue();
+	}
+}
+With Java 8, you can convert a Map.entrySet() to a stream, follow by a filter() and collect() it.
+
+//Map -> Stream -> Filter -> String
+String result = A_MAP_EXAMPLE.entrySet().stream()
+	.filter(map -> "something".equals(map.getValue()))
+	.map(map->map.getValue())
+	.collect(Collectors.joining());
+
+//Map -> Stream -> Filter -> MAP
+Map<Integer, String> collect = A_MAP_EXAMPLE.entrySet().stream()
+	.filter(map -> map.getKey() == 2)
+	.collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue()));
+
+        List<Person> persons = Arrays.asList(
+                new Person("mkyong", 30),
+                new Person("jack", 20),
+                new Person("lawrence", 40)
+        );
+
+        Person result1 = persons.stream()                        // Convert to steam
+                .filter(x -> "jack".equals(x.getName()))        // we want "jack" only
+                .findAny()                                      // If 'findAny' then return found
+                .orElse(null);                                  // If not found, return null
+
+        2.3 For multiple condition.
+        Person result1 = persons.stream()
+                .filter((p) -> "jack".equals(p.getName()) && 20 == p.getAge())
+                .findAny()
+                .orElse(null);
+
+        System.out.println("result 1 :" + result1);
+        //or like this
+                Person result2 = persons.stream()
+                        .filter(p -> {
+                            if ("jack".equals(p.getName()) && 20 == p.getAge()) {
+                                return true;
+                            }
+                            return false;
+                        }).findAny()
+                        .orElse(null);
+        String name = persons.stream()
+                .filter(x -> "jack".equals(x.getName()))
+                .map(Person::getName)                        //convert stream to String
+                .findAny()
+                .orElse("");
+List to Map – Collectors.toMap()
+
+                Map<String, Long> result1 = list.stream().collect(
+                                Collectors.toMap(Hosting::getName, Hosting::getWebsites));
+
+ist<Student> studentList = new ArrayList<Student>();
+
+  studentList.add(new Student("Robert","5st grade", Arrays.asList(new String[]{"history","math","geography"})));
+  studentList.add(new Student("Martin","8st grade", Arrays.asList(new String[]{"economics","biology"})));
+  studentList.add(new Student("Robert","9st grade", Arrays.asList(new String[]{"science","math"})));
+
+  Set<Student> courses = studentList.stream().flatMap( e -> e.getCourse().stream()).collect(Collectors.toSet());
+
+  System.out.println(courses);
+  [economics, biology, geography, science, history, math]
+
+
+  Map result1 = list.stream()
+                 .sorted(Comparator.comparingLong(Hosting::getWebsites).reversed())
+                 .collect(
+                         Collectors.toMap(
+                                 Hosting::getName, Hosting::getWebsites, // key = name, value = websites
+                                 (oldValue, newValue) -> oldValue,       // if same key, take the old key
+                                 LinkedHashMap::new                      // returns a LinkedHashMap, keep order
+                         ));
+
+         System.out.println("Result 1 : " + result1);
+
+Optional
+Advantages of Java 8 Optional:
+
+Null checks are not required.
+No more NullPointerException at run-time.
+We can develop clean and neat APIs.
+No more Boiler plate code
+1. Optional Basic example
+Optional.ofNullable() method returns a Non-empty Optional if a value present in the given object. Otherwise returns empty Optional.
+Optionaal.empty() method is useful to create an empty Optional object.
+
+Your question is based on assumption that the code which may throw NullPointerException is worse than the code which may not.
+This assumption is wrong. If you expect that your foobar is never null due to the program logic, it's much better to use Optional.of(foobar) as you will see a NullPointerException which will indicate that your program has a bug. If you use Optional.ofNullable(foobar) and the foobar happens to be null due to the bug, then your program will silently continue working incorrectly, which may be a bigger disaster. This way an error may occur much later and it would be much harder to understand at which point it went wrong.
+
+When using the Java 8 Optional class, there are two ways in which a value can be wrapped in an optional.
+String foobar = <value or null>;
+Optional.of(foobar);         // May throw NullPointerException
+Optional.ofNullable(foobar); // Safe from NullPointerException
+
+ Optional<String> gender = Optional.of("MALE");
+        String answer1 = "Yes";
+        String answer2 = null;
+
+         System.out.println("ofNullable on Non-Empty Optional: " + Optional.ofNullable(answer1));
+         System.out.println("ofNullable on Empty Optional: " + Optional.ofNullable(answer2));
+
+         // java.lang.NullPointerException
+         System.out.println("ofNullable on Non-Empty Optional: " + Optional.of(answer2));
+
+ System.out.println(gender.filter(g -> g.equalsIgnoreCase("MALE"))); //Optional[MALE]
+ Optional isPresent and ifPresent
+ Optional.isPresent() returns true if the given Optional object is non-empty. Otherwise it returns false.
+
+ Optional.ifPresent() performs given action if the given Optional object is non-empty. Otherwise it returns false.
+Optional<String> gender = Optional.of("MALE");
+Optional<String> emptyGender = Optional.empty();
+emptyGender.ifPresent(g -> System.out.println("In emptyGender Option, value available."));
+
+5. Optional orElse methods
+It returns the value if present in Optional Container. Otherwise returns given default value.
+System.out.println(gender.orElse("<N/A>")); //MALE
+System.out.println(emptyGender.orElse("<N/A>")); //<N/A>
+
+
+default method
+
+intermediate filter meaning
+terminal
+
+
+The difference between collections and streams has to do with when things are computed. A collection is an in-memory data structure, which holds all the values that the data structure currently has—every element in the collection has to be computed before it can be added to the collection. In contrast, a stream is a conceptually fixed data structure in which elements are computed on demand.
+

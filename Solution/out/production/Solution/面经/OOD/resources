@@ -1,0 +1,5 @@
+https://github.com/careercup/ctci/blob/master/java/Chapter%208/Question8_3/User.java
+
+要思考方法的return type和input type
+怎么让两个类发生关系，一个是通过方法传参，另一个是通过field
+方法的input是传object，可以是this，或者是传其他的reference

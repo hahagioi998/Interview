@@ -1,0 +1,41 @@
+JPA
+
+HQL
+
+
+Criteria
+more object oriented
+https://www.mkyong.com/hibernate/hibernate-criteria-examples/
+
+One to Many
+https://www.mkyong.com/hibernate/hibernate-one-to-many-relationship-example-annotation/
+@Entity
+@Table(name = "stock", catalog = "mkyongdb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "STOCK_NAME"),
+		@UniqueConstraint(columnNames = "STOCK_CODE") }){
+
+		@Id
+                	@GeneratedValue(strategy = IDENTITY)
+                	@Column(name = "STOCK_ID", unique = true, nullable = false)
+                	public Integer getStockId() {
+                		return this.stockId;
+                	}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "stock")
+            	public Set<StockDailyRecord> getStockDailyRecords() {
+            		return this.stockDailyRecords;
+            	}
+}
+
+@Entity
+@Table(name = "stock_daily_record", catalog = "mkyongdb",
+uniqueConstraints = @UniqueConstraint(columnNames = "DATE"))
+public class StockDailyRecord implements java.io.Serializable {
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "STOCK_ID", nullable = false)
+	public Stock getStock() {
+		return this.stock;
+	}
+}
+
+Many to Many

@@ -1,0 +1,10 @@
+BFS1 in tree uses queue -> level order traversal
+
+reconstruct里做一个inorder的hashmap非常有用
+HashMap<Integer, Integer> inMap = new HashMap<Integer,Integer>();
+        for (int i=0;i< in.length;++i) {
+            inMap.put(in[i], i);
+        }
+
+用stack和queue的时候，要马上想到look是可以用while(!s.isEmpty()) while(!q.isEmpty()) while(x ！= null)
+然后就poll出来进行操作

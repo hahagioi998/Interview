@@ -1,0 +1,58 @@
+
+        //开头检查是不是只有一个node或者没有node
+        //要考虑这两种情况
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        //cur在dummy
+        //check cur后面的两个node，会停在cur后面还有一个node的时候，也就是链表的倒数第二个
+        while (cur.next != null && cur.next.next != null) {//while >= two nodes, stop at second last
+        }
+
+        一些判断方法
+        如果是偶数个fast就会是null，奇数个fast就是最后一个
+        ListNode slow = head, fast = head;
+        while(fast != null && fast.next != null){
+                    slow = slow.next;
+                    fast = fast.next.next;
+                }
+
+从dummy node开始走是一个很好的方法，走到node的前一个停也是很好的
+如果是在一个链表中reverse一部分，那么就要注意记录prehead不动，prev动（开始和prehead是同一个值，最后prev这个会是new head），指向head不动（最后就是尾巴），head/cur动（最后会是尾巴的后面一个，新一段的开头）
+reverse都是顺时针走的
+
+Leetcode分类解析：链表
+ http://blog.csdn.net/dc_726/article/details/52197474
+关于链表类问题的通用技巧，先要说的最关键一点就是：prev就是单向链表的生命线！prev是完成各种操作的必要条件，也是确定invariant的关键。所以我们一定要找好previous结点，围绕它展开编码。下面来具体说一下各个类型题各自的特点。
+3.1 删除（Removal）
+Dummy头的使用：当有可能操作头结点时，特别是删除操作，就要用到Dummy，这样能简化我们的处理逻辑。如果不会操作头结点则不需要，否则就画蛇添足了。例如第83题，删除duplicate，所以肯定不会删除头结点。
+//首先要思考链表的开头会不会丢，任何时候都不要丢到开头
+ListNode dummy = new ListNode(0);
+dummy.next = head;
+ListNode cur = dummy;
+
+3.1.1 Dummy与删除方式
+83-Remove Duplicates from Sorted List (Easy): Given a sorted linked list, delete all duplicates such that each element appear only once.
+For example,
+Given 1->1->2, return 1->2.
+Given 1->1->2->3->3, return 1->2->3.
+
+Hint: 从这道题我们可以学习一下删除结点的两种方法，可以说各种所长。第一种是向后比较结点，发现重复就删掉。因为可能会删掉后面的结点，所以一定要注意cur的判空条件。当正常遍历时，cur可能为空，当删掉了后面结点时cur.next可能为空，都要判断。第二种是向前比较结点，即用prev记录前一个结点的值，发现相同就删掉当前结点，判空条件简单一些，但一定注意prev和cur的更新。因为这道题肯定不会删除head，所以也就没用到dummy头结点。
+删除操作：技巧有dummy头结点和向前向后两种删除方式，注意删除和不删除情况下的指针移动
+
+3.2 反转与旋转（Reversal & Rotation）
+“转”有很多种：Swap(in pair/in K group)交换（相当于两个结点的反转）、Reverse反转、Rotate旋转。最重要的是一定要注意：在操作之后不要留下Cycle，导致死循环。
+下面是Reverse的两道典型题，通过这两道题我们看一下Reverse的两种方法。
+3.2.3 应用：逆序插入或比较
+
+3.3 重排序（Reorder）
+对于Reorder类的问题，比如让List前半部是奇数结点或者小于某个数等等，List比Array还有个优势，Array不能额外分配空间，所以只能定义好几个下标i、j、k之类，然后根据它们定义invariant。但对于List却可以直接将弄两个dummy结点，将原List拆成两部分最后合并到一起。
+3.3.2 新建链表
+新建链表的好处就是不用考虑被移动结点的前继指向，因为最终原链表的所有结点都会被分类加入到新链表中，所以我们别忘了修改新链表中最后一个结点的指向就可以了。下面以第86题为例，来看一下这种方法，从代码上一眼就能看出这种方法的简洁。
+3.4 多指针移动（Two Pointers）
+用多个速度快慢的指针遍历链表能够解决很多奇妙的问题，典型的有找偏移K的结点、找中点、判断环位置等等。
+
+K偏移的关键就是找准偏移位置。可关于这个位置还有不少定义，一定要看准题意：是从左从前还是从右从后数的第K个结点，是第K个结点还是第K个位置（第61题）。
+
+下面以第19题为例，来看一下找偏移位置的方法。

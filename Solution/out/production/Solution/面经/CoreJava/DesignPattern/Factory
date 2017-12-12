@@ -1,0 +1,135 @@
+用途和好处：one of the best ways to create an object. create object without exposing the creation logic to the client and refer to newly created object using a common interface.
+Factory design pattern is used to create objects or Class in Java and it provides loose coupling and high cohesion.
+Factory pattern encapsulate object creation logic which makes it easy to change it later when you change how object gets created or you can even introduce new object with just change in one class.
+画图：
+例子：
+When to use Factory design pattern in Java
+Static Factory methods are common in frameworks where library code needs to create objects of types which may be sub classed by applications using the framework.
+Some or all concrete products can be created in multiple ways, or we want to leave open the option that in the future there may be new ways to create the concrete product.
+Factory method is used when Products don't need to know how they are created.
+We  can use factory pattern where we have to create an object of any one of sub-classes depending on the data provided
+
+Advantage of Factory method Pattern in Java:
+Factory pattern in Java is heavily used everywhere including JDK, open source library and other frameworks.In following are main advantages of using Factory pattern in Java:
+
+1) Factory method design pattern decouples the calling class from the target class, which result in less coupled and highly cohesive code?
+E.g.: JDBC is a good example for this pattern; application code doesn't need to know what database it will be used with, so it doesn't know what database-specific driver classes it should use. Instead, it uses factory methods to get Connections, Statements, and other objects to work with. Which gives you flexibility to change your back-end database without changing your DAO layer in case you are using ANSI SQL features and not coded on DBMS specific feature?
+
+2) Factory pattern in Java enables the subclasses to provide extended version of an object, because creating an object inside factory is more flexible than creating an object directly in the client. Since client is working on interface level any time you can enhance the implementation and return from Factory.
+
+3) Another benefit of using Factory design pattern in Java is that it encourages consistency in Code since every time object is created using Factory rather than using different constructor at different client side.
+
+4) Code written using Factory design pattern in Java is also easy to debug and troubleshoot because you have a centralized method for object creation and every client is getting object from same place.
+
+
+Some more advantages of factory method design pattern is:
+1. Static factory method used in factory design pattern enforces use of Interface than implementation which itself a good practice. for example:
+
+Map synchronizedMap = Collections.synchronizedMap(new HashMap());
+
+2. Since static factory method have return type as Interface, it allows you to replace implementation with better performance version in newer release.
+3. Another advantage of static factory method pattern is that they can cache frequently used object and eliminate duplicate object creation. Boolean.valueOf() method is good example which caches true and false boolean value.
+4. Factory method pattern is also recommended by Joshua Bloch in Effective Java.
+5 Factory method pattern offers alternative way of creating object.
+6. Factory pattern can also be used to hide information related to creation of object.
+
+That’s all on Factory design patten in Java for now. This is one of the most used patterns in Java library and different Java frameworks. Summary is try to use Factory pattern whenever you see an opportunity to encapsulate object creation code and see chance of creating different object in near future.
+
+Step 1
+Create an interface.
+
+Shape.java
+
+public interface Shape {
+   void draw();
+}
+Step 2
+Create concrete classes implementing the same interface.
+
+Rectangle.java
+
+public class Rectangle implements Shape {
+
+   @Override
+   public void draw() {
+      System.out.println("Inside Rectangle::draw() method.");
+   }
+}
+Square.java
+
+public class Square implements Shape {
+
+   @Override
+   public void draw() {
+      System.out.println("Inside Square::draw() method.");
+   }
+}
+Circle.java
+
+public class Circle implements Shape {
+
+   @Override
+   public void draw() {
+      System.out.println("Inside Circle::draw() method.");
+   }
+}
+Step 3
+Create a Factory to generate object of concrete class based on given information.
+
+ShapeFactory.java
+
+public class ShapeFactory {
+
+   //use getShape method to get object of type shape
+   public Shape getShape(String shapeType){
+      if(shapeType == null){
+         return null;
+      }
+      if(shapeType.equalsIgnoreCase("CIRCLE")){
+         return new Circle();
+
+      } else if(shapeType.equalsIgnoreCase("RECTANGLE")){
+         return new Rectangle();
+
+      } else if(shapeType.equalsIgnoreCase("SQUARE")){
+         return new Square();
+      }
+
+      return null;
+   }
+}
+Step 4
+Use the Factory to get object of concrete class by passing an information such as type.
+
+FactoryPatternDemo.java
+
+public class FactoryPatternDemo {
+
+   public static void main(String[] args) {
+      ShapeFactory shapeFactory = new ShapeFactory();
+
+      //get an object of Circle and call its draw method.
+      Shape shape1 = shapeFactory.getShape("CIRCLE");
+
+      //call draw method of Circle
+      shape1.draw();
+
+      //get an object of Rectangle and call its draw method.
+      Shape shape2 = shapeFactory.getShape("RECTANGLE");
+
+      //call draw method of Rectangle
+      shape2.draw();
+
+      //get an object of Square and call its draw method.
+      Shape shape3 = shapeFactory.getShape("SQUARE");
+
+      //call draw method of circle
+      shape3.draw();
+   }
+}
+Step 5
+Verify the output.
+
+Inside Circle::draw() method.
+Inside Rectangle::draw() method.
+Inside Square::draw() method.

@@ -1,0 +1,30 @@
+Q37. What do you know about the Java garbage collector? When does the garbage collection occur?
+A37. Each time an object is created in Java, it goes into the area of memory known as heap. The Java heap is called the garbage collectable heap.
+The garbage collection cannot be forced. The garbage collector runs in low memory situations. When it runs, it releases the memory allocated by an unreachable object.
+The garbage collector runs on a low priority daemon (i.e. background) thread. You can nicely ask the garbage collector to collect garbage by calling System.gc( ) but you can’t force it.
+
+Q38. What is an unreachable object?
+A38. An object’s life has no meaning unless something has reference to it.
+If you can’t reach it then you can’t ask it to do anything. Then the object becomes unreachable and the garbage collector will figure it out.
+Java automatically collects all the unreachable objects periodically and releases the memory consumed by those unreachable objects to be used by the future reachable objects.
+
+Q39. What is the difference between a weak reference and a soft reference? Which one would you use for caching?
+A39. Weak reference: A weak reference, simply put, is a reference that isn’t strong enough to force an object to remain in memory.
+Weak references allow you to leverage the garbage collector’s ability to determine reachability for you, so you don’t have to do it yourself. You create a weak reference like this:
+Car c1 = new Car( );         //referent is c1 is a strong reference
+WeakReference<Car> wr = new WeakReference<Car>(c1);
+A weak reference is a holder for a reference to an object, called the referent.
+Weak references and weak collections are powerful tools for heap management, allowing the application to use a more sophisticated notion of reachability, rather than the “all or nothing” reachability offered by ordinary (i.e. strong) references.
+A WeakHashMap stores the keys using WeakReference objects, which means that as soon as the key is not referenced from somewhere else in your program, the entry may be removed and is available for garbage collection.
+One common use of WeakReferences and WeakHashMaps in particular is for adding properties to objects. If the objects you are adding properties to tend to get destroyed and created a lot, you can end up with a lot of old objects in your map taking up a lot of memory. If you use a WeakHashMap instead the objects will leave your map as soon as they are no longer used by the rest of your program, which is the desired behavior.
+
+Soft reference is similar to a weak reference, except that it is less eager to throw away the object to which it refers. An object which is only weakly reachable will be discarded at the next garbage collection cycle, but an object which is softly reachable will generally stick around for a while as long as there is enough memory. Hence the soft references are good candidates for a cache.
+byte[ ] cache = new byte[1024];
+//... populate the cache. The referent is  cache
+SoftReference<byte> sr = new    SoftReference<byte>(cache);
+The garbage collector may or may not reclaim a softly reachable object depending on how recently the object was created or accessed, but is required to clear all soft references before throwing an OutOfMemoryError.
+
+Note: The weak references are eagerly garbage collected, and the soft references are lazily garbage collected under low memory situations.
+Q40. If you have a circular reference of objects, but you no longer reference it from an execution thread, will this object be a potential candidate for garbage collection?
+A40. Yes. Refer diagram below.
+

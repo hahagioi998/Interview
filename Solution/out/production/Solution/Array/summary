@@ -1,0 +1,9 @@
+
+用prefix sum
+首先考虑这个array是不是sorted非常重要
+还要考虑有没有重复的值
+是不是都是正数
+其次考虑可不可以用多余的space
+
+相向而行的pointers在sorted array可以创造一个sum不断变小的区间
+通过quick sort的partition是非常好的可以把array分成两部分的方法

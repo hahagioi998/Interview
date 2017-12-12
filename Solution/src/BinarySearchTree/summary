@@ -1,0 +1,17 @@
+BST的recursion不是直接preorder，inorder，和postorder
+而是要比较根的值和target的值来决定去左还是右
+
+recursion或者iterate
+recursion要想到递归步骤和递归终止条件
+递归经常是用helper function with parameters start，end，还有就是index或者currentnode
+然后分左子树和右子树递归，左边是start到mid-1，右边是mid+1到end
+终止条件是start>=end
+中间要不断找到这个mid，同时用index或者mid取值
+
+reconstruct的话index/curnode应该是一个global的variable, 不然的话同一层的index就没有变化
+边界条件
+    知道index的边界在哪里，<0或者>=length的时候就返回null，也要考虑不在max和min之中了
+取到root
+recursion和backtraking返回root的left和right
+返回root
+
