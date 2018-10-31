@@ -15,6 +15,7 @@ class DistanceFromRootToTreeNode {
             return 0;
         }
 
+        //当在这个节点的时候
          if (root.data == n1) {
             return 1;
          }
@@ -26,6 +27,7 @@ class DistanceFromRootToTreeNode {
         if(left != 0 || right != 0){
             return left == 0? right + 1 : left + 1;
         }
+        //不是这个节点
         return 0;
 
         }

@@ -1,5 +1,6 @@
 package String.RemoveAdjacent;
 //“aaaabbbc” is transferred to “aabbc”
+//注意slow的物理意义，这里应该在1的位置
 public class RemoveAdjacent2 {
     public String deDup(String input) {
         if(input.length() < 2){

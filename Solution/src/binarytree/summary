@@ -8,3 +8,26 @@ HashMap<Integer, Integer> inMap = new HashMap<Integer,Integer>();
 
 用stack和queue的时候，要马上想到look是可以用while(!s.isEmpty()) while(!q.isEmpty()) while(x ！= null)
 然后就poll出来进行操作
+
+树的问题：
+整个树的问题也是每个节点的问题，因为每个节点都是它的子节点的根。
+根节点问子节点问题，同时传给子节点需要的东西：左子节点和右子节点。
+返回值：左子节点和右子节点回答问题。（也不一定要返回值，根据问题而定）
+       -特殊情况：只有一个子树，返回哪个值
+怎么回答问题 return：根节点要返回什么给父节点。
+    - 目的是什么？要很清楚要找的是什么
+    - （!)条件是已经有个左子树和右子树的结果！（递归的原理！）
+    - 特殊情况：当只有一个子树的时候怎么办
+      -- 计算题：two children and one child will make a difference when minimum matters, 有负数的时候或者取最小值的时候，并且还要推到叶节点的时候
+
+//确保有左子树和右子树
+ if (root.left != null && root.right != null) {}
+
+边界条件：当当前节点是null的时候怎么办？
+
+把一个复杂的问题分解成更小的问题
+
+recursion rule：要么就在向下传的时候记录值，但是这个时候是不知道要找的点在哪里的，不然就要到底的时候再回溯的时候再记录这个值。
+找值的时候两种可能，找到和找不到。
+
+两个树的recursion是同步recursion，传两个值而已

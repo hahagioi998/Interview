@@ -32,6 +32,7 @@ public class CheckInternalNodeBSTWithOneChild {
         for(int i = 0; i < input.length-1; i++){
             //一定是在这个范围之间
             if(input[i] > min && input[i] < max){
+                //下一个值
                 if(input[i+1] < input[i]){
                     max = input[i];
                 }else{

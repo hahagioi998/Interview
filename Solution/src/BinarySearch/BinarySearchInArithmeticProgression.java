@@ -16,20 +16,24 @@ public class BinarySearchInArithmeticProgression {
     public int search(int input[]){
         int low =0;
         int high = input.length-1;
-        //找到间隔
+        //找到正确的间隔，除以input.length是因为知道少了一个
         int ap = (input[high] - input[low])/(input.length);
         int middle = -1;
 
+        //可以用low +1 < high,至少要三个值
         while(low <= high){
+            //index
             middle = (low + high)/2;
 
             if(input[middle] == input[0] + (middle)*ap){
                 //说明前半段是对的，缺的应该在后半段
                 low = middle + 1;
             }else if((input[middle] > input[0] + (middle)*ap) && input[middle - 1] == input[0] + (middle - 1)* ap){
+              //这个判断条件一定要在不等的前面！
                 //说明前半段缺，但是mid-1这个位置上是对的，那就说明错的是mid这个位置上的
                 return input[0] + (middle)*ap;
             }else{
+              //如果不等，就是前半段缺
                 //如果前半段缺了，那input[middle]会更大
                 high = middle - 1;
             }

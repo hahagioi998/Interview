@@ -26,6 +26,7 @@ class PathFromRootToTreeNode {
         }
         return false;
     }
+
     public static void main (String[] args) throws java.lang.Exception
     {
         TreeNode root = new TreeNode(1);

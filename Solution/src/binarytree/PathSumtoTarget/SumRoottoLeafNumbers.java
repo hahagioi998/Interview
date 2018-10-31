@@ -10,6 +10,7 @@ The root-to-leaf path 1->3 represents the number 13.
 
  Return the sum = 12 + 13 = 25.
  */
+//关键在于需要prev
 public class SumRoottoLeafNumbers {
     public int sumNumbers(Node root) {
         return dfs(root, 0);
@@ -23,6 +24,7 @@ public class SumRoottoLeafNumbers {
 
         //这个乘以10非常关键
         int sum = root.data + prev * 10;
+        //到叶节点
         if(root.left == null && root.right == null) {
             return sum;
         }

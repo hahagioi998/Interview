@@ -5,24 +5,48 @@ package binarytree;
          *
          * https://leetcode.com/problems/count-univalue-subtrees/
          */
-public class CountUnivalueTree {
+ class CountUnivalueTree {
+    //global value
     private int count = 0;
-    public int countUnivalSubtrees(Node root) {
+    public int countUnivalSubtrees(TreeNode root) {
         countUnivalSubtreesUtil(root, 0);
         return count;
     }
 
-    private int countUnivalSubtreesUtil(Node root, int val) {
+    private int countUnivalSubtreesUtil(TreeNode root, int val) {
         if (root == null) {
+            //返回root的data
             return val;
         }
-        int left = countUnivalSubtreesUtil(root.left, root.data);
-        int right = countUnivalSubtreesUtil(root.right, root.data);
-        if (left == right && left == root.data) {
+
+        //到最后才能判断，当前的node和它的子树是可以知道的
+        int left = countUnivalSubtreesUtil(root.left, root.key);
+        int right = countUnivalSubtreesUtil(root.right, root.key);
+        if (left == right && left == root.key) {
             count++;
-            return root.data;
+            return root.key;
         } else {
             return Integer.MAX_VALUE;
         }
+    }
+
+    // Driver program to test above functions
+    public static void main(String args[])
+    {
+           /* Let us construct the below tree
+                5
+              /   \
+            4      5
+          /  \      \
+         4    4      5 */
+        TreeNode root = new TreeNode(5);
+        root.left = new TreeNode(4);
+        root.right = new TreeNode(5);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(4);
+        root.right.right = new TreeNode(5);
+        CountUnivalueTree sol = new CountUnivalueTree();
+        System.out.println("The count of single valued sub trees is : "
+                + sol.countUnivalSubtrees(root));
     }
 }

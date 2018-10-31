@@ -13,10 +13,13 @@ public class lca2 {
 }
 
     private TreeNodeP mergeNode(TreeNodeP shorter, TreeNodeP longer, int diff){
+      //用这个方法来消除差距
         while(diff > 0){//bring longer and shorter to the same level
             longer = longer.parent;
             diff--;
         }
+
+        //用while loop到遇到就好了
         while(longer != shorter){//go up until short and longer meet
             //if one of them is null, loop will break when longer one become null
             longer = longer.parent;

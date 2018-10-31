@@ -3,6 +3,7 @@ package BFS.KthSmallest;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+//利用点和邻近点的关系做BFS，BFS可以找最短的路径
 public class KthSmallestInSortedMatrix {
     public int kthSmallest(int[][] matrix, int k) {
 

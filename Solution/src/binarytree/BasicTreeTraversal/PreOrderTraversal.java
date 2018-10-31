@@ -14,7 +14,9 @@ public class PreOrderTraversal {
         while (!stack.isEmpty()) {
             Node node = stack.pop();//root
 
-            if (node != null) {//until reach null
+            //想想只有三个node，根左右的话要怎么放
+            //node有可能会有是null，因为有的node可能只有一个子节点
+            if (node != null) {
                 //root，只在到root的时候加入到过list里
                 res.add(node.data);
                 stack.push(node.right);

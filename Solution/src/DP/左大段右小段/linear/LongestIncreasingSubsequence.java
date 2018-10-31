@@ -17,6 +17,7 @@ public class LongestIncreasingSubsequence {
         int[] dp = new int[array.length];
         // dp[0] = 1;
         int longest = 1;
+
         for(int i = 0; i < array.length; i++){
             dp[i] = 1;//shortest sequence could start from here
             for(int j = 0; j < i; j++){//induction rule

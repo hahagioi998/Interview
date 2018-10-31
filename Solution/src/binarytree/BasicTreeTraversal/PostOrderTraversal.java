@@ -16,7 +16,6 @@ public class PostOrderTraversal {
                 res.addFirst(node.data);
                 stack.push(node.left);
                 stack.push(node.right);
-
             }
         }
         return res;

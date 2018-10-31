@@ -1,6 +1,7 @@
 package String.CompressDecompress;
 
 //“a1c0b2c4” → “abbcccc”
+//另一种从string里取数字的方法
 public class DecompressString2 {
     public String decompress(String input) {
         // Write your solution here.

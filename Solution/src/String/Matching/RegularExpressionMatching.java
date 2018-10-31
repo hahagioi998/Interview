@@ -2,6 +2,7 @@ package String.Matching;
 
 /*
 Implement regular expression matching with support for '.' and '*'.
+和wildcard不一样的是，这里*对应的前面的字符
 
 '.' Matches any single character.
 '*' Matches zero or more of the preceding element.
@@ -28,42 +29,51 @@ Here are some conditions to figure out, then the logic can be very straightforwa
 3, If p.charAt(j) == '*':
    here are two sub conditions:
                1   if p.charAt(j-1) != s.charAt(i) : dp[i][j] = dp[i][j-2]  //in this case, a* only counts as empty
-               2   if p.charAt(i-1) == s.charAt(i) or p.charAt(i-1) == '.':
+               2   if p.charAt(j-1) == s.charAt(i) or p.charAt(j-1) == '.':
                               dp[i][j] = dp[i-1][j]    //in this case, a* counts as multiple a
                            or dp[i][j] = dp[i][j-1]   // in this case, a* counts as single a
                            or dp[i][j] = dp[i][j-2]   // in this case, a* counts as empty
  */
 public class RegularExpressionMatching {
     public boolean isMatch(String s, String p) {
-
-        if (s == null || p == null) {
+        if(s == null || p == null) {
             return false;
         }
-        boolean[][] dp = new boolean[s.length()+1][p.length()+1];
-        dp[0][0] = true;
-        for (int i = 0; i < p.length(); i++) {
-            if (p.charAt(i) == '*' && dp[0][i-1]) {
-                dp[0][i+1] = true;
+        boolean[][] state = new boolean[s.length() + 1][p.length() + 1];
+        state[0][0] = true;
+        // no need to initialize state[i][0] as false
+        // initialize state[0][j]
+        for (int j = 1; j < state[0].length; j++) {
+            if (p.charAt(j - 1) == '*') {
+                if (state[0][j - 1] || (j > 1 && state[0][j - 2])) {
+                    state[0][j] = true;
+                }
             }
         }
-        for (int i = 0 ; i < s.length(); i++) {
-            for (int j = 0; j < p.length(); j++) {
-                if (p.charAt(j) == '.') {
-                    dp[i+1][j+1] = dp[i][j];
+
+        /*
+
+           for(int i = 2; i <= n; i++){
+            if(pc[i - 1] == '*'){
+                dp[0][i] = dp[0][i - 2]; // *可以消掉c*
                 }
-                if (p.charAt(j) == s.charAt(i)) {
-                    dp[i+1][j+1] = dp[i][j];
+            }
+         */
+        for (int i = 1; i < state.length; i++) {
+            for (int j = 1; j < state[0].length; j++) {
+                if (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.') {
+                    state[i][j] = state[i - 1][j - 1];
                 }
-                if (p.charAt(j) == '*') {
-                    if (p.charAt(j-1) != s.charAt(i) && p.charAt(j-1) != '.') {
-                        dp[i+1][j+1] = dp[i+1][j-1];
+                if (p.charAt(j - 1) == '*') {
+                    if (s.charAt(i - 1) != p.charAt(j - 2) && p.charAt(j - 2) != '.') {
+                        state[i][j] = state[i][j - 2];
                     } else {
-                        dp[i+1][j+1] = (dp[i+1][j] || dp[i][j+1] || dp[i+1][j-1]);
+                        state[i][j] = state[i - 1][j] || state[i][j - 1] || state[i][j - 2];
                     }
                 }
             }
         }
-        return dp[s.length()][p.length()];
+        return state[s.length()][p.length()];
     }
 
 
@@ -116,7 +126,7 @@ public class RegularExpressionMatching {
     }
 
     public boolean checkEmpty(String p) {
-        if (p.length()%2 != 0) {
+        if (p.length() % 2 != 0) {
             return false;
         }
 

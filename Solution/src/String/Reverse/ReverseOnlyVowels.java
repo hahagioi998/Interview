@@ -1,5 +1,6 @@
 package String.Reverse;
 
+//相向而行，同时是vowel才换
 public class ReverseOnlyVowels {
     public String reverse(String input) {
         // Write your solution here.

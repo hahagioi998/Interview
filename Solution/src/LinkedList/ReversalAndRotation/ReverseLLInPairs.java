@@ -20,11 +20,12 @@ public class ReverseLLInPairs {
         dummy.next = head;
         ListNode current = dummy;
 
+        //也是偶数奇数的问题，考虑到最后一个就不转了
         while (current.next != null && current.next.next != null) {
             ListNode first = current.next;
             ListNode second = current.next.next;
 
-            first.next = second.next;
+            first.next = second.next;//会丢失的头
             second.next = first;
             current.next = second;
             current = first;

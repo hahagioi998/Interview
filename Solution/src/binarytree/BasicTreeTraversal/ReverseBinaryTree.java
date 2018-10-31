@@ -18,6 +18,10 @@ public class ReverseBinaryTree {
         root.right = null;
         return newRoot;
 
-        //need to know iterative method also
+        //need to know iterative method also？？
     }
 }
+
+//    1
+//  2  3
+//4 5  6 7

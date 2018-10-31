@@ -10,6 +10,8 @@ package BinarySearch;
  * 3) largest element at center
  * 4) smallest element at left side
  * 5) smallest element at right side
+ *
+ * Well. So there are N points on circle and there is one point M outside circle. Also it does not say if points on circle are given in what order. So basically you have can have first increasing then decreasing order(because points go farther and farther from M and then start coming close to M since its a circle). Or first decreasing then increasing order. So I did binary search to find closest point on the circle from M.
  */
 public class CircularBinarySearch {
     //if mid is greater than both ends than result is low of two ends else move in direction

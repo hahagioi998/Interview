@@ -17,15 +17,19 @@ public class AddList {
                 int sum = carry + l1.value + l2.value;
                 point.next = new ListNode(sum % 10);
                 carry = sum / 10;
+
+                //有三个指针要移动
                 l1 = l1.next;
                 l2 = l2.next;
                 point = point.next;
+
             }
 
             while(l1 != null) {
                 int sum =  carry + l1.value;
                 point.next = new ListNode(sum % 10);
                 carry = sum /10;
+                //两个指针要移动
                 l1 = l1.next;
                 point = point.next;
             }

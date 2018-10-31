@@ -1,11 +1,12 @@
 package String.Reverse;
 //不仅要reverse还要去掉多余的空格
+//先去空格
 public class ReverseWordsII {
     public String reverseWords(String input) {
         // Write your solution here.
         char[] array = input.toCharArray();
         int slow = 0;
-        //先去掉开头的空格，
+        //先去掉多余的空格，
         for(int i = 0; i < array.length; i++){
             //leading 0, consecutive 0, what about traing zero?
             // while((i == 0 || array[i - 1] ==  ' ') && array[i] == ' '){
@@ -32,6 +33,7 @@ public class ReverseWordsII {
         reverse(newArray, 0, slow - 1);
 
         int left = 0, right = 0;
+        //这里是小于slow，因为slow是个数
         for(int i = 0; i < slow; i++){
             //
             if((i == 0 || newArray[i - 1] ==' ') && newArray[i] != ' '){

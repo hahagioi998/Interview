@@ -10,12 +10,13 @@ public class MeetingRoom {
         //sort based on meeting start time
         Arrays.sort(intervals, new Comparator<Interval>(){
             public int compare(Interval a, Interval b){
-                return a.start-b.start;
+                return a.start - b.start;
             }
         });
-        //i和i+1的比较
-        for(int i=0; i<intervals.length-1; i++){
-            if(intervals[i].end>intervals[i+1].start){
+        //i和i+1的比较，就要注意这里i < intervals.length - 1
+        for(int i = 0; i < intervals.length - 1; i++){
+            //因为是先按照start排序了，就只要比较前一个end是不是小于后一个start就好了
+            if(intervals[i].end > intervals[i + 1].start){
                 return false;
             }
         }
@@ -33,6 +34,7 @@ public class MeetingRoom {
             }
         });
         int end = intervals[0].end;
+        //这里是i是从1开始，是比较后一个的start是不是小于前一个end
         for(int i = 1; i < intervals.length; i++){
             if(intervals[i].start < end) {
                 return false;

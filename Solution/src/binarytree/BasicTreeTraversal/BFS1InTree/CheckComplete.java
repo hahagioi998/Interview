@@ -10,6 +10,8 @@ import java.util.Queue;
 // think about on the same level, we want to fill left child first
 // no more left child means no more right child
 // no more right child means end of tree
+
+//只有两种不成立的情况
 public class CheckComplete {
     public boolean isCompleted(TreeNode root) {
         //if the flag is set to true, there should be no child afterwards

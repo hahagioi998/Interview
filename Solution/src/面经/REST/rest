@@ -2,3 +2,16 @@ SOAP webserivce 和 RESTful webservice 对比及区别
 http://www.importnew.com/24695.html
 RESTful API 设计最佳实践
 http://www.importnew.com/24372.html
+http://www.ruanyifeng.com/blog/2014/05/restful_api.html
+
+
+Define the endpoints
+request/response
+possible http return codes
+error response
+security
+Auth2？
+pagination
+
+https://restful.io/an-introduction-to-api-s-cee90581ca1b
+提到了orthentication的部分

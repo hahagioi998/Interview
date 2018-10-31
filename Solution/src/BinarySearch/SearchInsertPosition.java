@@ -18,7 +18,7 @@ If there are multiple elements with value same as target, we should insert the t
 /*
 分析三种典型情况：
 
-目标值在数组范围之内，最后返回值一定是start + 1
+目标值在数组范围之内，最后返回值一定是start + 1，相当于前后加dummy nodes
 目标值比数组最小值还小，此时start 一直为-1, 故最后返回start + 1 也没错，也可以将-1 理解为数组前一个更小的值
 目标值大于等于数组最后一个值，由于循环退出条件为start + 1 == end, 那么循环退出时一定有start = A.length - 1, 应该返回start + 1
 综上所述，返回start + 1是非常优雅的实现。其实以上三种情况都可以统一为一种方式来理解，即索引-1 对应于在数组前方插入一个非常小的数，索引end 即对应数组后方插入一个非常大的数，那么要插入的数就一定在start 和end 之间了。
@@ -44,6 +44,7 @@ public class SearchInsertPosition {
             }
         }
 
+        //抛，先查右边
         if(input[right] < target){
             return right + 1;
         }else{
@@ -57,6 +58,7 @@ public class SearchInsertPosition {
         }
 
         int start = -1, end = A.length;
+        //必须要有三个元素才能进，通过补项来变成三个
         while (start + 1 < end) {
             int mid = start + (end - start) / 2;
             if (A[mid] == target) {
@@ -64,10 +66,12 @@ public class SearchInsertPosition {
             } else if (A[mid] < target) {
                 start = mid;
             } else {
+              //mid大于target
                 end = mid;
             }
         }
 
+        //没有抛，start一定比mid小，end一定比mid大
         return start + 1;
     }
 }

@@ -16,7 +16,7 @@ public class SearchElementInMatrixI {
 
         //end是最后一个index
         int start = 0, end = row * column - 1;
-        //用<=二分法
+        //用<=二分法，等于的话就一定要抛，不然相等再进去的话就会死循环
         while(start <= end){
             int mid = start + (end - start) / 2;
 
@@ -27,6 +27,7 @@ public class SearchElementInMatrixI {
                 //找到
                 return true;
             }else if(number > target){
+                //想成是1D
                 //可以抛弃，用-1
                 end = mid - 1;
             }else{

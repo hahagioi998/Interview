@@ -1,6 +1,8 @@
 package String.CompressDecompress;
 //acb2c4” → “acbbcccc
 //字母的下一个可能有数字也可能没有数字
+//学到怎么从string中取数字，count = Integer.valueOf(array[i + 1]+"");
+//这里assume了数字不会超过9
 public class DecompressString1 {
     public String decompress(String input) {
         // Write your solution here.

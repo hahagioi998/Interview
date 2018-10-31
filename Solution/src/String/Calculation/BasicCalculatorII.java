@@ -14,10 +14,10 @@ public class BasicCalculatorII {
         for(int i=0;i<len;i++){
             //这是分开的两个if，如果是数字的话要先拿到
             if(Character.isDigit(s.charAt(i))){
-                num = num*10+s.charAt(i)-'0';
+                num = num*10 + s.charAt(i)-'0';
             }
             //不是数字也不是空格，或者是最后一个char了
-            if((!Character.isDigit(s.charAt(i)) &&' '!=s.charAt(i)) || i==len-1){
+            if((!Character.isDigit(s.charAt(i)) && ' '!=s.charAt(i)) || i==len-1){
                 if(sign=='-'){
                     stack.push(-num);
                 }

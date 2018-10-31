@@ -17,6 +17,7 @@ public class CheckIfSubTree {
             return true;
         }
 
+        //在identical tree增加了这一步，就是子节点再去比较
         return isSubtree(T1.left, T2) || isSubtree(T1.right, T2);
     }
 

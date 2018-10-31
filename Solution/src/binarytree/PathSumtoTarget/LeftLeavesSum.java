@@ -30,6 +30,7 @@ public class LeftLeavesSum {
     public static void leftSum(Node root, Boolean left) {//for root parent is root
         if (root != null) {
 //            leftSum(root.left, root); can put here too use inorder
+            //只有叶节点才加
             if (root.left == null && root.right == null && left == true) {
                 leftLeavesSum += root.data;
             }

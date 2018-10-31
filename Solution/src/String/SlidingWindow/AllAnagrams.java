@@ -77,6 +77,7 @@ public class AllAnagrams {
         for(char ch : s.toCharArray()){
             map.put(ch, map.getOrDefault(ch, 0) + 1);
         }
+
         return map;
     }
 }

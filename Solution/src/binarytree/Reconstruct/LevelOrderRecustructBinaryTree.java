@@ -16,7 +16,9 @@ public class LevelOrderRecustructBinaryTree {
         queue.offer(root);
 
         for(int i = 1; i < level.length; i++){
+
             if(queue.peek().left != null && queue.peek().right != null){
+                //有子树才poll
                 queue.poll();
             }
             TreeNode cur = queue.peek();

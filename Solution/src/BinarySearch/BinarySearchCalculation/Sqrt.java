@@ -9,6 +9,7 @@ public class Sqrt {
         int left = 1, right = x;
         while(left + 1 < right){
             int mid = left + (right - left)/2;
+            //总是和x比较
             // if(mid * mid > x){  mid^2 gets too large and become negative
             if(mid > x/mid){
                 right = mid;

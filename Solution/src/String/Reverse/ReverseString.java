@@ -1,5 +1,6 @@
 package String.Reverse;
 
+//相向而行，学会用一个for loop就可以写好了
 public class ReverseString {
     public String reverse(String input) {
         //need to know how to do it in a recursive way

@@ -27,6 +27,7 @@ public class TreeHeightWithoutRecursion {
                 if(!q.isEmpty()){
                     q.add(null);
                 }
+                //这一层结束了
                 height++;
             }else{
                 // else add the children of extracted node.

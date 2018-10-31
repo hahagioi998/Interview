@@ -27,6 +27,7 @@ public class GetNodesLayerByLayer {
                 //for loop is not necessary for levelorder traversal
                 //just adding elements to list
                 list.add(node.data);
+
                 if (node.left != null) {
                     queue.offer(node.left);
                 }

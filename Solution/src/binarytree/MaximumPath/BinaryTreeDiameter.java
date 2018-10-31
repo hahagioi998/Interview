@@ -6,7 +6,7 @@ package binarytree.MaximumPath;
  postorder meaning must collect return from left and right before you an do something
  */
 
-//path is the no of nodes
+//path is the no of nodes，找最长的节点链
 //we'll not know path untill we get values from left and right, so this is a postorder traversal
 // when we need values from left and right, we need to consider if minimum is unknown
 
@@ -20,7 +20,7 @@ public class BinaryTreeDiameter {
     }
 
     private int helper(TreeNode root, int[] max){
-        if(root == null){ //base case is where recursion ends, meaning where the path can reach
+        if (root == null) { //base case is where recursion ends, meaning where the path can reach
             return 0;
         }
 
@@ -28,7 +28,7 @@ public class BinaryTreeDiameter {
         int right = helper(root.right, max);
 
         //make sure you have both the left and right nodes, because it's leaf to leaf, root not consider as leaf here
-        if(root.left != null && root.right != null){
+        if (root.left != null && root.right != null) {
             //update global max
             max[0] = Math.max(left + right + 1, max[0]);
         }

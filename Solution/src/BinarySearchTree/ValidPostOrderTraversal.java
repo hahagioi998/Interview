@@ -14,7 +14,7 @@ public class ValidPostOrderTraversal {
 
         int root = nodes[end]; //current root value
 
-        //找到分解点
+        //找到分解点,这里i是倒着走，也可以正着走
         int i = end-1;
         while(i >= start && nodes[i]>root){
             i--;

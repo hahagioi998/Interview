@@ -1,6 +1,7 @@
 package binarytree.PathSumtoTarget;
 
 //we need compare cur level with deepestlevel, a preorder traversal
+//可以分解成找左边和最深，左边可以通过true false来解决，最深就要通过比较
 public class DeepestLeftLeaf {
         //level is not specific to left subtree
 

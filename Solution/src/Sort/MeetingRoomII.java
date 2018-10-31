@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
+//不是很懂这种比较方法？？
 /*
 Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), find the minimum number of conference rooms required.
 For example,
@@ -19,13 +19,12 @@ public class MeetingRoomII {
             list.add(new Point(i.end, 0));
         }
 
-        Collections.sort(list,Point.PointComparator );
+        Collections.sort(list,Point.PointComparator);
         int count = 0, ans = 0;
         for(Point p : list){
             if(p.flag == 1) {
                 count++;
-            }
-            else {
+            } else {
                 count--;
             }
             ans = Math.max(ans, count);

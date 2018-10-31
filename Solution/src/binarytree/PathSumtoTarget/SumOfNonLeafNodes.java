@@ -7,6 +7,7 @@ public class SumOfNonLeafNodes {
         return sum[0];
     }
 
+    //不需要返回local的值
     private void dfs(Node root, int sum[]){
         //需要这个因为只有一个孩子的情况
         if(root == null) {

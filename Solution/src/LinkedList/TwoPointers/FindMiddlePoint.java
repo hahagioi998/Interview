@@ -24,8 +24,9 @@ public class FindMiddlePoint {
         //2-3-4-5  4
         //2-3-4   3
         //we need both fast.next != null && fast.next.next != null because odd will result in npe
-        //fast != null && fast.next != null 如果是1->2的话会返回1
-        //fast.next != null && fast.next.next != null 如果是1->2的话会返回2
+        //fast != null && fast.next != null 如果是1->2的话会返回2，fast是null
+        //fast.next != null && fast.next.next != null 如果是1->2的话会返回1，fast也在1
+        // 12345 两个方法都会返回3
         while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;

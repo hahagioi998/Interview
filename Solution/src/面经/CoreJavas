@@ -19,7 +19,7 @@ Solution: Generate a UUID at every thread’s entry point to your application an
 The key is to draw as much context as you can, the thread you’re in, the class, and maybe even the specific method if you’re on a critical path.
 
 Problem #2: Uncaught Exceptions Don’t Have Information About the Error
- The Default Uncaught Exception Handler. Once we have an Uncaught Exception Handler in place, we can actually do something about them and draw out some valuable data. The problem is that by the time they reach the Uncaught Exception Handler up the call stack, most of the context we can draw about the error is lost. Once again, we have another small window of opportunity here and not all is lost: Thread Local Storage (TLS) and thread names.
+The Default Uncaught Exception Handler. Once we have an Uncaught Exception Handler in place, we can actually do something about them and draw out some valuable data. The problem is that by the time they reach the Uncaught Exception Handler up the call stack, most of the context we can draw about the error is lost. Once again, we have another small window of opportunity here and not all is lost: Thread Local Storage (TLS) and thread names.
 Thread Local Storage lets us store variables on the thread itself, not bounded to any stack frame.
 So with TLS we can store more data about the state we were in before the exception was thrown. Another cool trick here is using meaningful thread names, so instead of a name like:
 
@@ -37,6 +37,11 @@ It’s probably a mission for good ol’ jstack from the tools you have built in
 Solution: Know your way around jstack and use it to untie hairy situations.
 
 Problem #4: All These Solutions Require Code Changes
+
+interface vs abstract class
+Abstract Class can have attributes
+Abstract Class can have private methods
+‘extends’ Abstract class but ‘implement’ Interface
 
 
 Collections vs Collection in Java
@@ -146,3 +151,54 @@ Builder pattern builds a complex object using simple objects and using a step by
 Difference between factory and abstract factory？
  An abstract factory is simply a factory interface. With it, you can switch your factories at runtime, to allow different factories in different contexts. Examples could be different factories for different OS'es, SQL providers, middleware-drivers etc..
  The Factory Method creates objects through inheritance where the Abstract Factory creates objects through composition.
+
+different ways of iterating through a collection
+https://www.testingexcellence.com/4-different-ways-iterate-map-java/
+
+interface vs. abstract class
+When we talk about abstract classes we are defining characteristics of an object type; specifying what an object is.
+
+When we talk about an interface and define capabilities that we promise to provide, we are talking about establishing a contract about what the object can do.
+
+
+ finally，final， finalize
+
+
+
+GCC
+
+
+java static
+
+
+
+HashMap的机制
+https://www.linkedin.com/pulse/10-things-java-developer-should-know-hashmap-chinmay-parekh/
+
+
+Comparable(interface) vs Comparator
+https://www.programcreek.com/2011/12/examples-to-demonstrate-comparable-vs-comparator-in-java/
+class SizeComparator implements Comparator<Dog> {
+	@Override
+	public int compare(Dog d1, Dog d2) {
+		return d1.size - d2.size;
+	}
+}
+
+class Dog implements Comparable<Dog>{
+	int size;
+
+	Dog(int s) {
+		size = s;
+	}
+
+	@Override
+	public int compareTo(Dog o) {
+		return o.size - this.size;
+	}
+}
+
+用户登录后发生了什么
+
+
+用户输入网址后发生了什么

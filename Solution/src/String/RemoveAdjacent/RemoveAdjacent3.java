@@ -1,6 +1,8 @@
 package String.RemoveAdjacent;
 
 //“aaaabbbc” is transferred to “c”
+//学会用flag来表示是否重复
+//这里也是不确定一次确定slow的位置是不是可以保留，所以不同的时候用flag区分两种情况，一种是覆盖当前（当前是重复的），一种是覆盖下一个
 public class RemoveAdjacent3 {
     public String deDup(String input) {
         // distinguish between aabb(flag == true) and bbc(flag == false)
@@ -14,7 +16,7 @@ public class RemoveAdjacent3 {
         for(int i = 1; i < array.length; i++){
             if(array[slow] == array[i]){//compare slow and fast
                 flag = true;
-            }else if(flag == true){  // array[slow] != array[i]
+            }else if(flag == true){  // 这里包含了并且array[slow] != array[i]
                 array[slow] = array[i];//not advancing slow ptr, but overrides it
                 flag = false;
             }else{

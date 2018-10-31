@@ -5,7 +5,7 @@ public class lca1 {
                                          TreeNode one, TreeNode two) {
         // Write your solution here.
         if (root == null) {
-            return root;
+            return null;
         }
         if (root == one || root == two) {
             return root;

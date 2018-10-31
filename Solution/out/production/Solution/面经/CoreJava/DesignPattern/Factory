@@ -133,3 +133,9 @@ Verify the output.
 Inside Circle::draw() method.
 Inside Rectangle::draw() method.
 Inside Square::draw() method.
+
+factory method
+https://www.jyt0532.com/2017/04/28/factory-method/
+
+abstract factory
+https://www.jyt0532.com/2017/05/03/abstract-factory/

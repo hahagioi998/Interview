@@ -27,6 +27,9 @@ public class FormLargestNumber {
         for (int i = 0; i < strs.length; i++) {
             sb.append(strs[i]);
         }
+
+        //这里已经sort完成了，剩下的要去掉前面的零
+
         String result = sb.toString();
         //看是不是都是0，其实只要看第一个char就好
         int index = 0;

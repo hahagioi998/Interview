@@ -35,11 +35,14 @@ public class ReorderLL {
             prev = cur;
             cur = tmp;
         }
+        //断开
         mid.next = null;
 
         // 3.Merge two halves: p1 and p2 moves on two halves by turns
         // why only check p1... 因为p1不是null，那p1.next就不会npe
+        //p1比较短
         for (ListNode p1 = head, p2 = prev; p1 != null; ) {
+            //一般要记下断开的那个点，会丢掉的开头
             ListNode tmp = p1.next;
             //p1.next = p2; p1 = p1.next;
             p1 = p1.next = p2;

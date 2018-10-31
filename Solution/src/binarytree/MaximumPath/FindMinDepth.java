@@ -22,10 +22,10 @@ public class FindMinDepth {
         int left = minDepth(root.left);
         int right = minDepth(root.right);
 
-        //minimum is unknown
+        //不是叶节点
         if(root.left != null && root.right != null){
 
-            //return local min
+            //return local min，当有两个子树的时候
             return Math.min(left, right) + 1;
         }
 

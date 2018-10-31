@@ -5,6 +5,7 @@ package binarytree.MaximumPath;
  postorder and inorder meaning you have to go all the way to the left
  postorder meaning must collect return, e.g. must know how many nodes, from left and right before you an do something
  */
+// MPS1 is the path from one leaf to another lead that contain maximum value
 //path is the no of nodes and their values
 //we'll not know path untill we get values from left and right, so this is a postorder traversal
 // when we need values from left and right, we need to consider if we have left and right
@@ -32,12 +33,13 @@ public class MPS1 {
         if (node.left != null && node.right != null) {
             // update global max
             max = Math.max(max, left + right + node.key);
-            // return local max, which is just path from root to left or root to right
+            // return local max, 两个子树都在的时候
             return Math.max(left, right) + node.key;
         }
 
         // meaning two children and one child will make a difference when minimum matters,
 // e.g. nodes value could be negative!! minimum is unknown
+        //特殊情况，只有一个子树的时候
         return node.left == null ? node.key + right : node.key + left;
     }
 }

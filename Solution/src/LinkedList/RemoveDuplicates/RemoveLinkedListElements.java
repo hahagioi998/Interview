@@ -1,11 +1,10 @@
 package LinkedList.RemoveDuplicates;
-/*
-Write a function to delete a node (except the tail) in a singly linked list, given only access to that node. Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third node with value 3, the linked list should become 1 -> 2 -> 4 after calling your function.
- */
+
 /*
 Hint: 非常简单，注意删除掉next结点的话就不用prev=prev.next了，删除结点时prev.next发生变化所以不用做什么，只有不删除时才向后移动，否则有可能空指针！
  */
 public class RemoveLinkedListElements {
+    //recursion
     public ListNode removeElements(ListNode head, int val) {
         if (head == null) return null;
         //传head.next下去
@@ -13,6 +12,7 @@ public class RemoveLinkedListElements {
         return head.value == val ? head.next : head;
     }
 
+    //iteration
     public ListNode removeElements2(ListNode head, int val) {
         ListNode fakeHead = new ListNode(-1);
         fakeHead.next = head;

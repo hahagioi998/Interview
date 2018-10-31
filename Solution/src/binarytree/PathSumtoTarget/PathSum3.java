@@ -9,6 +9,7 @@ package binarytree.PathSumtoTarget;
 //we can choose to discard the previous sum
 
 // preorder
+//不需要从根出发
 public class PathSum3 {
     public boolean exist(TreeNode root, int target) {
         if(root == null) {

@@ -1,5 +1,15 @@
 package Sort;
 
+import java.util.Arrays;
+
+/*
+--i decrements i by 1 then gives you the value of i.
+
+i-- gives you the value of i then decrements it by 1.
+
+假如只有0和1要变成0在1前面，sort的方法就是把一个设定为基本点，然后抛另一个
+0 1 2的话就先把2抛到后面，然后按照0和1处理，把0和1看做一个基本单位
+ */
 public class RainbowSortI {
     public int[] rainbowSort(int[] array) {
         // (Red is denoted by -1, Green is denoted by 0, and Blue is denoted by 1).
@@ -30,5 +40,12 @@ public class RainbowSortI {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
+    }
+
+    public static void main(String[] args){
+        RainbowSortI s = new RainbowSortI();
+        int[] res = s.rainbowSort(new int[]{1, -1, 0, 1, 0});
+
+        System.out.println(Arrays.toString(res));
     }
 }

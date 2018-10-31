@@ -8,11 +8,13 @@ Restrictions:
 The string consists of lower English letters only.
 Length of the given string and k will in the range [1, 10000]
  */
+//学会去找左边界和右边界，还有注意不够k的时候边界问题
 public class ReverseStringII {
     public String reverseStr(String s, int k) {
         char[] arr = s.toCharArray();
         int n = arr.length;
         int i = 0;
+
         while(i < n) {
             //因为不到k也要reverse
             int j = Math.min(i + k - 1, n - 1);

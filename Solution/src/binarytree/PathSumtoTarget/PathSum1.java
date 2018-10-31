@@ -12,6 +12,7 @@ package binarytree.PathSumtoTarget;
 public class PathSum1 {
     public boolean exist(TreeNode root, int target) {
         if (root == null) { // reach after leaf would be false, because we check before it reaches leaf
+            //单一节点的时候，就放弃这条线
             return false;
         }
         if(root.left == null && root.right == null && target - root.key == 0) {

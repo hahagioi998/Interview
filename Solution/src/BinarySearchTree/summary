@@ -4,6 +4,7 @@ BST的recursion不是直接preorder，inorder，和postorder
 recursion或者iterate
 recursion要想到递归步骤和递归终止条件
 递归经常是用helper function with parameters start，end，还有就是index或者currentnode
+start和end的问题可以从初始值开始想，因为同样的原则也会应用于每一次recursion
 然后分左子树和右子树递归，左边是start到mid-1，右边是mid+1到end
 终止条件是start>=end
 中间要不断找到这个mid，同时用index或者mid取值
@@ -14,4 +15,10 @@ reconstruct的话index/curnode应该是一个global的variable, 不然的话同�
 取到root
 recursion和backtraking返回root的left和right
 返回root
+
+BST可以通过root的值和target比较来决定向左还是向右（both recursion and iteration）
+思考变量是什么，不变量是什么，（while）变量的边界是什么，变量的变化是什么
+每一个节点只针对这一个节点，但应用于每一个节点，
+同一时间只能访问一个节点，可能是根的左节点，也可以是右节点，
+当前节点要问子树的问题，子树返回值和当前节点的关系，recursion要做的每一个节点都相同，但也要思考联动关系
 

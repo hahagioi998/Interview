@@ -27,12 +27,14 @@ public class PreorderAndInorder {
             return null;
         }
         //preOrder所以root一定在最左边
+        //每一个节点都是子节点的根节点
         TreeNode root = new TreeNode(pre[preLeft]);//create a treeNode
 
         int inMid = inIndex.get(root.key);//find middle value
 
         //inMid - inLeft 给出了左边树的大小   inMid - inRight + 1 给出了右边树的大小 ？
         //pre的左边 从preLeft + 1 因为根在前面 ，右边界加上左子树的大小就好了
+        // inleft 到inmID -1里面的元素和 preLeft + 1和preLeft + inMid - inLeft 是一样的
         root.left = helper(pre, inIndex, inLeft, inMid - 1, preLeft + 1, preLeft + inMid - inLeft);
         //inMid - inLeft is the size of left subtree
         root.right = helper(pre, inIndex, inMid + 1, inRight, preRight + inMid - inRight + 1, preRight);

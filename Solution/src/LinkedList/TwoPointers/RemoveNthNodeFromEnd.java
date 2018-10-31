@@ -54,6 +54,7 @@ public class RemoveNthNodeFromEnd {
         //   //remove first node, so need a dummy node
         // }
 
+        //linked list走的方法
         while (fast != null) {
             slow = slow.next;//slow starts from dummy
             fast = fast.next;

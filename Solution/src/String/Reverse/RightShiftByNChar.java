@@ -1,6 +1,7 @@
 package String.Reverse;
 //abcde -> edcba
 //decba
+//shift的题都要想到会不会超过长度
 public class RightShiftByNChar {
     public String rightShift(String input, int n) {
         if (input.length() == 0) {

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 //first count all frequencies of elements
-
+//这道题需要的是一个frequencyMap和一个bucket list
 public class TopKElement {
     public List<Integer> topKFrequent(int[] nums, int k) {
 
@@ -13,14 +13,14 @@ public class TopKElement {
         //bucket是nums.length + 1长
         //因为最多的frequency就是length个
         List<Integer>[] bucket = new List[nums.length + 1];
-        //integer and its frequency
+        //存的是integer and its frequency
         Map<Integer, Integer> frequencyMap = new HashMap<>();
         //put the value 里去get
         for (int n : nums) {
             frequencyMap.put(n, frequencyMap.getOrDefault(n, 0) + 1);
         }
 
-        //从keyset中拿出integer和integer出现的频次
+        //从keyset中拿出integer(就是keyset）和integer出现的频次
         for (int key : frequencyMap.keySet()) {
             int frequency = frequencyMap.get(key);
 
@@ -44,4 +44,10 @@ public class TopKElement {
         }
         return res;
     }
+
+  public static void main(String[] args) {
+    TopKElement sol = new TopKElement();
+    int[] array = new int[]{1, 1, 3, 4, 5, 2, 3, 2, 4, 4};
+    sol.topKFrequent(array, 3);
+  }
 }

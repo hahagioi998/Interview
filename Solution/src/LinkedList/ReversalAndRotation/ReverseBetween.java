@@ -35,7 +35,7 @@ public class ReverseBetween {
         dummy.next = head;
 
         // 1.Find node in front of range to be reversed
-        //从dummy开始走，m-1就可以到m-1个node
+        //从dummy开始走，0到m-1就可以到第m-1个node
         ListNode prev = dummy;
         for (int i = 0; i < m - 1; i++) {
             prev = prev.next;

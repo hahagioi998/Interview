@@ -12,7 +12,8 @@ public class CheckPalindrome {
             fast = fast.next.next;
         }
 
-        //用两种方法奇数的时候 fast都是最后一个值
+        //用两种方法奇数的时候 fast都是最后一个值，slow是中间值
+      //偶数的话slow就是3了
         if(fast != null){
             slow = slow.next;
         }
@@ -34,6 +35,7 @@ public class CheckPalindrome {
     private ListNode reverse(ListNode head){
         ListNode prev = null;
         while(head != null){
+            //从head这里断开
             ListNode temp = head.next;
             head.next = prev;
             prev = head;

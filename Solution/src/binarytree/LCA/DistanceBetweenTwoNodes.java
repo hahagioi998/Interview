@@ -15,7 +15,7 @@ class DistanceBetweenTwoTreeNodes {
         if (root != null) {
             int x = 0;
             if ((root.data == n1) || (x = Pathlength(root.left, n1)) > 0
-                    || (x = Pathlength(root.right, n1)) > 0) {
+                || (x = Pathlength(root.right, n1)) > 0) {
                 // System.out.println(root.data);
                 return x + 1;
             }

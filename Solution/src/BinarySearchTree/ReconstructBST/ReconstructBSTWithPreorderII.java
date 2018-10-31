@@ -29,12 +29,14 @@ public class ReconstructBSTWithPreorderII {
             //pop的时候stack不能为空
             while (!s.isEmpty() && preorder[i] > s.peek().data) {
                 x = s.pop();
+                //x就是当前的root
             }
             //从stack取到了值，说明要去到右变了
             if (x != null) {
                 x.right = new Node(preorder[i]);
                 s.push(x.right);
             } else {
+                //没有更大的就说明preorder[i]比s.peek小，是left child
                 s.peek().left = new Node(preorder[i]);
                 s.push(s.peek().left);
             }

@@ -6,6 +6,7 @@ Hint: 因为要删除所有duplicate，而不是只保留一份，所以while循
 如果只用一层循环，那么效果就跟第83题一样了，必须保留一份duplicate，否则下一轮循环时不知道之前重复的是哪个结点。
 因为都删了，所以还要保留重复的节点之前的点，不然不知道invariant是哪个
  */
+//在leetcode上试一试，head != null && head.next != nul
 public class RemoveDuplicates2 {
     public ListNode removeDup(ListNode head) {
         //left to cur including cur are not duplicates
@@ -15,12 +16,13 @@ public class RemoveDuplicates2 {
         if(head == null || head.next == null){
             return head;
         }
-        //Input your code here
+        //可能会把头结点删掉
         ListNode dummy = new ListNode(0);
         ListNode cur = dummy;
         dummy.next = head;
         //head is fast
         while(head != null){
+            //循环开始时cur和head都指向同一个
             //when there are duplicates
             //head != null && head.next != null(for duplicate at the end)
             //will make head stop at last duplicate element
@@ -35,6 +37,7 @@ public class RemoveDuplicates2 {
                 cur = cur.next;
             }else{//when there are duplicates
                 //not moving cur, but skip duplicates
+                //把第一个重复也删掉
                 cur.next = head.next;
             }
             head = head.next;

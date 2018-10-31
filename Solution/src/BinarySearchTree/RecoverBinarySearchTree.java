@@ -1,12 +1,13 @@
 package BinarySearchTree;
 
 //使用了inorder，inorder的顺序会得出一个递增序列
+//反常在于root会比prev小
 public class RecoverBinarySearchTree {
     TreeNode firstNode = null;//need to use global variable, java is pass by value
     TreeNode secondNode = null;
 
     //要和前面比较所以需要一个prev node
-
+    //prev开始要是最小值，因为是递增序列
     TreeNode prev = new TreeNode(Integer.MIN_VALUE);
     public TreeNode recover(TreeNode root) {
         // inorder traversal of BST
@@ -36,7 +37,8 @@ public class RecoverBinarySearchTree {
             secondNode = root;
         }
 
-        prev = root; //reset prev for each root before goes to right
+
+        prev = root; //reset prev for each root before goes to right,因为right就是后面的顺序
 
         helper(root.right);
     }

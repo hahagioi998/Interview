@@ -12,9 +12,11 @@ public class ConvertBSTtoGreaterSumTree {
         }
         //这是不包括自己的解法
         dfs(cur.right);
+
         int copy = cur.key;
         cur.key = sum;
         sum += copy;
+
         dfs(cur.left);
 
         //这是sum包括自己的解法

@@ -19,12 +19,15 @@ Output Tree
     / \   \
    D-->E-->F-->NULL
  */
+
+//不需要特别连到null，没有就是null了
 public class ConnectNodesAtTheSameLevel{
     public static void connect(Node root) {
         if (root == null) {
             return;
         }
 
+        //在A的时候
         Node firstNode = root;
         Node prevNode = null;
 
@@ -33,6 +36,7 @@ public class ConnectNodesAtTheSameLevel{
             //真正的initialize
             firstNode = null;
             prevNode = null;
+
             while (root != null) {
                 if (root.left != null) {
                     //最左端
@@ -62,8 +66,7 @@ public class ConnectNodesAtTheSameLevel{
         }
     }
 
-    static void connect2(Node root)
-    {
+    static void connect2(Node root) {
         Queue<Node> q = new LinkedList<>();
         q.add(root);
 
@@ -73,7 +76,9 @@ public class ConnectNodesAtTheSameLevel{
         // Do Level order of tree using NULL markers
         while (!q.isEmpty()) {
             //拿出一个来
+          //the remove() method throws an exception, while the poll() method returns null.
             Node p = q.peek();
+            //Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
             q.remove();
             if (p != null) {
 

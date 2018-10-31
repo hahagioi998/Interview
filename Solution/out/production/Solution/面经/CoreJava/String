@@ -4,6 +4,8 @@ Since cached String literals are shared between multiple clients there is always
 For example, if one client changes the value of String "Test" to "TEST", all other clients will also see that value as explained in the first example.
 Since caching of String objects was important from performance reason this risk was avoided by making String class Immutable.
 At the same time, String was made final so that no one can compromise invariant of String class e.g. Immutability, Caching, hashcode calculation etc by extending and overriding behaviors.
+https://www.programcreek.com/2013/04/why-string-is-immutable-in-java/
+
 
 2. Another reason of why String class is immutable could die due to HashMap.
 Since Strings are very popular as HashMap key, it's important for them to be immutable so that they can retrieve the value object which was stored in HashMap.

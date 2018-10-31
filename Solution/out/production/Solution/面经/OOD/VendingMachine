@@ -1,0 +1,125 @@
+https://leetcode.com/discuss/interview-question/125218/design-a-vending-machine
+Besides above question, I would like to share some general approach towards OOD problem:
+
+Clarify: many OOD questions are intentionally vague for us to clarify.
+Use case: an easy way to get started.
+  -List all functions we need to implement, then analysis what should the object do and how should it behave.
+
+Propose a design pattern: not necessary but a bonus point.
+
+Draw a diagram: draw all parts of the object to make it functional. Keep in mind the OOD concepts. This is a very important step to show our ideas, draw as clear as we can. (One funny tip I learned is, in case we suddenly forgot everything in an actual interview, draw the exact object we are asked to design first to get our brain warm!)
+思考一下具体的物体：比如一个vending machine->vending machine 类 ->interface 和implementation
+interface里就是所有vending machine都应该有的功能，所谓功能，很大部分是和用户的互动
+implementation里放的其他类是vending machine里面存的东西-》item和inventory
+inventory是一个用来计数的类，存的variable就是一个map，function就是基于这个map的各种操作，一般就是加，减，get，put，has(boolean)
+定义一些属于这个特定的object的Exception类extends RuntimeException
+package vending;
+public class NotFullPaidException extends RuntimeException {
+    private String message;
+    private long remaining;
+
+    public NotFullPaidException(String message, long remaining) {
+        this.message = message;
+        this.remaining = remaining;
+    }
+
+    public long getRemaining() {
+        return remaining;
+    }
+
+    @Override
+    public String getMessage() {
+        return message + remaining;
+    }
+}
+
+
+Item一般是Enum类
+public enum Item{
+COKE("Coke", 25),
+PEPSI("Pepsi", 35),
+SODA("Soda", 45);
+private String name;
+private int price;
+
+private Item(String name, int price)
+{ this.name = name; this.price = price; }
+
+public String getName(){
+return name;
+}
+public long getPrice(){
+return price;
+}
+}
+
+抛Exception的部分
+
+private Item collectItem() throws NotSufficientChangeException, NotFullPaidException{
+if(isFullPaid()){
+if(hasSufficientChange()){
+ itemInventory.deduct(currentItem);
+ return currentItem;
+ }
+throw new NotSufficientChangeException("Not Sufficient change in Inventory");
+}
+long remainingBalance = currentItem.getPrice() - currentBalance;
+throw new NotFullPaidException("Price not full paid, remaining : ", remainingBalance);
+}
+
+Read more: https://javarevisited.blogspot.com/2016/06/design-vending-machine-in-java.html#ixzz5UVd4YC91
+
+Read more: https://javarevisited.blogspot.com/2016/06/design-vending-machine-in-java.html#ixzz5UVEHoOGy
+
+Read more: https://javarevisited.blogspot.com/2016/06/design-vending-machine-in-java.html#ixzz5UVDr7JjK
+
+（怎么handle错误）Analysis the constrains: consider more use cases, what possibly make the object unfunctional and how can we fix it.
+Or consider the data size, what is the key constrains for the object to behave efficiently.
+
+Scalability: how can we scale for larger data set. This is more of system design part, it is good to mention but be careful on followups.
+Good to keep in mind: The most important part of OOD interview is how we think through a problem. Usually, process is more important than actually answer, and there is no absolute right or wrong answers. So try to analysis as much as we can with the interviewer.
+
+You need to design a Vending Machine which
+ - input ： Accepts coins of 1,5,10,25 Cents i.e. penny, nickel, dime, and quarter.
+ - options that user can choose from: Allow user to select products Coke(25), Pepsi(35), Soda(45)
+ - cancallation: Allow user to take refund by canceling the request.
+ Return selected product and remaining change if any
+ - options for a different user group: Allow reset operation for vending machine supplier.
+
+
+Read more: https://javarevisited.blogspot.com/2016/06/design-vending-machine-in-java.html#ixzz5UV87odkb
+
+Solution and Coding
+My implementation of Java Vending Machine has following classes and interfaces :
+
+VendingMachine
+It defines the public API of vending machine, usually all high-level functionality should go in this class
+
+VendingMachineImpl
+Sample implementation of Vending Machine
+
+VendingMachineFactory
+A Factory class to create different kinds of Vending Machine
+
+Item
+Java Enum to represent Item served by Vending Machine
+
+Inventory
+Java class to represent an Inventory, used for creating case and item inventory inside Vending Machine
+
+Coin
+Another Java Enum to represent Coins supported by Vending Machine
+
+Bucket
+A parameterized class to hold two objects. It's kind of Pair class.
+
+NotFullPaidException
+An Exception thrown by Vending Machine when a user tries to collect an item, without paying the full amount.
+
+NotSufficientChangeException
+Vending Machine throws this exception to indicate that it doesn't have sufficient change to complete this request.
+
+SoldOutExcepiton
+Vending Machine throws this exception if the user request for a product which is sold out.
+
+Read more: https://javarevisited.blogspot.com/2016/06/design-vending-machine-in-java.html#ixzz5UV8BDnbf
