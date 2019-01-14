@@ -12,7 +12,6 @@ Return 6, and the first 6 characters of the input array should be: ["a","2","b",
 //学会在一个string里数连续的数字的个数
 public class CompressString {
     public String compress(String input) {
-        // write your solution here
         StringBuilder sb = new StringBuilder();
         char[] array = input.toCharArray();
         for(int i = 0; i < array.length; i++){

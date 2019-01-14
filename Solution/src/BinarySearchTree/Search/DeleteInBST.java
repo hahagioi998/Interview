@@ -8,10 +8,13 @@ public class DeleteInBST {
             return root;
         }
         if(root.key > key){
+            //还是用recursion
             root.left = delete(root.left, key);
         }else if(root.key < key){
             root.right = delete(root.right, key);
         }else{
+            //删除的过程
+            //1. 如果只有一个child，那就直接返回另一个child就可以了
             if(root.right == null){
                 return root.left;// return newroot of subtree
             }else if(root.left == null){

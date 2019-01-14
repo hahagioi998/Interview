@@ -57,7 +57,7 @@ public class WildCardMatching {
     boolean comparison(String str, String pattern) {
         int s = 0, p = 0, match = 0, starIdx = -1;
         //走完string就算
-        while (s < str.length()){
+        while (s < str.length()) {
             // 如果是同样的字母或者p是？，advancing both pointers
             if (p < pattern.length()  && (pattern.charAt(p) == '?' || str.charAt(s) == pattern.charAt(p))){
                 s++;

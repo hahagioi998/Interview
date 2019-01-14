@@ -27,6 +27,7 @@ public abstract class Vehicle {
 	//这个park的方法是让parkingspot类里面的park来调用的
 	/* Park vehicle in this spot (among others, potentially) */
 	public void parkInSpot(ParkingSpot spot) {
+
 		parkingSpots.add(spot);
 	}
 	//这个unpark的方法调用了parkingspot的removeVehicle方法

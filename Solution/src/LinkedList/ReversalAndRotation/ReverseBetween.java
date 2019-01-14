@@ -25,6 +25,7 @@ Note: Given m, n satisfy the following condition: 1 ≤ m ≤ n ≤ length of li
 结束：prev=1, cur=2, then=null
 会了“头插法”真是多了一样武器，来看这道题的扩展，一道Hard级别的题，在“头插法”面前黯然失色，变得非常简单直接。
  */
+//这里考验的是在链表当中翻转链表，两种方法
 public class ReverseBetween {
     public ListNode reverseBetween2(ListNode head, int m, int n) {
         if (head == null) {
@@ -41,18 +42,20 @@ public class ReverseBetween {
             prev = prev.next;
         }
 
-        // 2.Do the reversion
+        // 2.Do the reversion 用头插法翻转
         // Invariant: prev->...->cur->then->... => prev->then...->cur->...
         // After that, "cur" stay the same, update "then
         //prev是不动的，用cur和then从最左开始两两反转，反转后的连到reverse
+        //头插法做两次，先把cur插到then的后面，然后把then插到prev的后面
         ListNode cur = prev.next;
         for (int i = 0; i < n - m; i++) {
             ListNode then = cur.next;
 
+            //把cur插到then的后面去，但是头插法两两翻转可以，但这里我们没有移动prev
             cur.next = then.next;
-            //注意因为是头插法，这里不是cur，是先让新节点的next指向头节点之后
+
+            //把then插到prev后面
             then.next = prev.next;
-            //把then插过去到prev后面
             prev.next = then;
         }
         return dummy.next;
@@ -74,10 +77,17 @@ public class ReverseBetween {
             head = head.next;
         }
 
-        //做四个记录
+        //做四个记录,四个头不能丢，用传统方法翻转prev，head和temp，但是现在我们不知道真正的prev，把prev相当于nNode
         ListNode premNode = head;
-        ListNode mNode = head.next;
-        ListNode nNode = mNode, postnNode = mNode.next;
+
+        ListNode mNode = head.next;//是翻转后的尾，是翻转前的头
+
+        //真正在移动的就是nNode和postNode还有就要有temp
+        //第一个/头
+        ListNode nNode = mNode;
+
+        //第二个
+        ListNode postnNode = mNode.next;
 
 
         //n-m次
@@ -86,12 +96,15 @@ public class ReverseBetween {
                 return null;
             }
 
+            //temp是第三个，还是从这里断开
             ListNode temp = postnNode.next;
             postnNode.next = nNode;
             nNode = postnNode;
             postnNode = temp;
         }
+        //翻转前的node连到尾
         mNode.next = postnNode;
+        //nNode就是prev
         premNode.next = nNode;
 
         return dummy.next;

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class DeepCopyLL {
     public RandomListNode copy(RandomListNode head) {
-        // Write your solution here.
+        // 需要不丢掉头和两个指针
         if(head == null){
             return null;
         }

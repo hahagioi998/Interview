@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class DeepcopySkipList {
     public SkipListNode copy(SkipListNode head) {
-        // write your solution here
         Map<SkipListNode, SkipListNode> map = new HashMap<>();
         SkipListNode dummy = new SkipListNode(0);
         SkipListNode cur = dummy;

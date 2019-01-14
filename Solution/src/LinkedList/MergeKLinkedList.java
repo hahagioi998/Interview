@@ -21,9 +21,9 @@ public class MergeKLinkedList {
         });
 
         ListNode dummy = new ListNode(0);
-        ListNode tail=dummy;
+        ListNode tail = dummy;
 
-        for (ListNode node:lists)
+        for (ListNode node : lists)
             if (node != null)
                 queue.add(node);
 

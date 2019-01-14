@@ -12,6 +12,7 @@ public class MergeSortLinkedList {
         return slow;
     }
 
+    //merge就是谁小移谁
     private ListNode merge(ListNode head1, ListNode head2) {
         //要创建一个新head
         ListNode dummy = new ListNode(0);
@@ -50,6 +51,7 @@ public class MergeSortLinkedList {
         mid.next = null;
         ListNode left = sortList(head);
 
+        //merge在最后，这是merge sort的特点
         return merge(left, right);
     }
 }

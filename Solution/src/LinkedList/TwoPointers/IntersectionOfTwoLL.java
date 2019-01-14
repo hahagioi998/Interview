@@ -22,7 +22,7 @@ public class IntersectionOfTwoLL {
         // lenb-lena = 2  a到结尾的时候，b在倒数第2，b到结尾的时候，a就是b的正数第2，b再到a的开头就一样长了
         //  7 1 2 3 4
         //4 5 6
-        while( a != b){
+        while( a != b ){
             //for the end of first iteration, we just reset the pointer to the head of another linkedlist
             a = a == null? headB : a.next;
             b = b == null? headA : b.next;

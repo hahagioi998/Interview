@@ -25,14 +25,16 @@ public class ReverseLLInPairs {
             ListNode first = current.next;
             ListNode second = current.next.next;
 
+            //头插法，把first插到second的后面
             first.next = second.next;//会丢失的头
             second.next = first;
             current.next = second;
+            //移动指针
             current = first;
         }
         return dummy.next;
     }
-
+//recursion要思考自己和子path的关系，有哪些处理要在返回值之前做，有哪些处理在之后做
 //        Method2：(每层处理两个node，reverse以后第二个node就是newhead）
 //        ListNode newHead = head.next; //每次返回给上一层的就是第二个node，是新的head 比如这里就是2
 //        head.next = reverseInPairs(head.next.next); // 1->3

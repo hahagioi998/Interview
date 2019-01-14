@@ -36,6 +36,7 @@ public class RainbowSortI {
         }
         return array;
     }
+
     private void swap(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];

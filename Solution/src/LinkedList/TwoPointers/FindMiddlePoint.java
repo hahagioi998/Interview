@@ -27,6 +27,8 @@ public class FindMiddlePoint {
         //fast != null && fast.next != null 如果是1->2的话会返回2，fast是null
         //fast.next != null && fast.next.next != null 如果是1->2的话会返回1，fast也在1
         // 12345 两个方法都会返回3
+      //12345678 slow是4，fast是7，slow的index*2
+      //123456789 slow是5，fast是9
         while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
@@ -34,7 +36,10 @@ public class FindMiddlePoint {
         return slow;
     }
 
-    //这个方法偶数的时后返回后一个1234返回3，用前面的方法返回2
+    //fast是正好是slow index*2，所以偶数个的时候就会是null了
+    //这个方法偶数的时后返回后一个1234返回3，fast是null，用前面的方法返回2
+    //123456789的话，slow是5，fast是9
+  //两种方法奇书的时候结果是一样的，偶数个的时候不一样
     public ListNode findMiddle(ListNode head){
         ListNode slow = head, fast = head;
         while(fast != null && fast.next != null){
@@ -55,10 +60,12 @@ public class FindMiddlePoint {
     public static void main(String[] args){
         FindMiddlePoint sol = new FindMiddlePoint();
         ListNode head = new ListNode(1);
-        head.next = new ListNode(2);
-        head.next.next = new ListNode(3);
-        head.next.next.next = new ListNode(4);
-        head.next.next.next.next = new ListNode(5);
+        ListNode cur = head;
+        for(int i = 2; i < 10; i++) {
+          cur.next = new ListNode(i);
+          cur = cur.next;
+        }
+
         System.out.println(sol.FindMiddlePoint(head).value);
 //        sol.display(head);
     }

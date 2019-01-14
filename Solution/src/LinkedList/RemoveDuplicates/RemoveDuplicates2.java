@@ -31,7 +31,8 @@ public class RemoveDuplicates2 {
                 //这里面没有删，只是走到最后一个
                 head = head.next;
             }
-            //head didn't move, no duplicates
+            //head didn't move, no duplicates，这里不是比较值，而是比较是不是同一个node
+            //不能比较值，因为没有重复node的值也是相等
             if(cur.next == head){
                 //only move cur when there's no duplicates
                 cur = cur.next;

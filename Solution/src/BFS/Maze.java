@@ -3,13 +3,13 @@ package BFS;
 import java.util.LinkedList;
 import java.util.Queue;
 
-https://leetcode.com/articles/the-maze/
+//https://leetcode.com/articles/the-maze/
 
 public class Maze {
   public boolean hasPath(int[][] maze, int[] start, int[] destination) {
     boolean[][] visited = new boolean[maze.length][maze[0].length];
     int[][] dirs={{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
-    Queue< int[] > queue = new LinkedList<>()< >();
+    Queue< int[] > queue = new LinkedList<>();
     queue.add(start);
     visited[start[0]][start[1]] = true;
     while (!queue.isEmpty()) {

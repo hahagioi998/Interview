@@ -8,11 +8,13 @@ public class CheckCycle {
     public boolean hasCycle(ListNode head) {
     if (head == null) return false;
 
+    //链表的原则1：头结点不能丢 2.查找是靠移动指针来完成的
     ListNode slow = head, fast = slow;
 
     while (fast.next != null && fast.next.next != null) {
         slow = slow.next;
         fast = fast.next.next;
+        //在循环的过程中看是否相遇
         if (slow == fast) {
             return true;
         }

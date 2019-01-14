@@ -5,6 +5,7 @@ public class InsertInLL {
     public ListNode insert(ListNode head, int value) {
         // could be done using one pointer traverse through whole list
         // the insertion position is between prev and pre.next
+        //或者可以用dummy node可以让所有的节点统一地处理。
         ListNode newNode = new ListNode(value);
         //只有一个node的情况
         if (head == null || head.value >= value) {
